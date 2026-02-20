@@ -1,0 +1,13 @@
+[Unit]
+Description=ATIS Decoder (RTL-SDR 156.500 MHz)
+After=network.target
+
+[Service]
+Type=simple
+User=user
+ExecStart=/bin/sh -c 'rtl_fm -f 156.500M -M fm -s 24000 -g 40 -l 50 | /home/user/atis/atis_decoder 127.0.0.1 5005'
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
